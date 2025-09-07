@@ -7,7 +7,7 @@ spring:
     url: \${DATABASE_URL:jdbc:postgresql://localhost:5432/simple-example-api}
     user: \${DATABASE_USERNAME:postgres}
     password: \${DATABASE_PASSWORD:postgres}
-    enabled: false
+    enabled: true
 
   datasource:
     driver-class-name: org.postgresql.Driver

@@ -8,3 +8,23 @@ databaseChangeLog:
             path: configuration.sql
             relativeToChangeLogFile: true
             endDelimiter: ;
+
+  - changeSet:
+      id: products
+      author: joalvarez
+      runOnChange: false
+      changes:
+        - sqlFile:
+            path: products.sql
+            relativeToChangeLogFile: true
+            endDelimiter: ;
+
+  - changeSet:
+      id: initial-data-products
+      author: joalvarez
+      runOnChange: false
+      changes:
+        - sqlFile:
+            path: products-initial-data.sql
+            relativeToChangeLogFile: true
+            endDelimiter: ;
