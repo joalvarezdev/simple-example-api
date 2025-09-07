@@ -69,6 +69,7 @@ public abstract class BaseService<D extends GenericDAO<E, K>, M extends GenericM
 
 	@Override
 	public Page<O> getPaginatedWithFilters(Pageable pageable, Map<String, String> filters) {
+		this.info("get all products by {}", filters);
 		filters.keySet().retainAll(this.validFields());
 
 		return this.dao.getPaginatedWithFilters(pageable, filters)
