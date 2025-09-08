@@ -11,13 +11,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Service
-public class ProductService
-        extends BaseService<
-                ProductDAO,
-                ProductMapper,
-                ProductDTO,
-                Product,
-	UUID> {
+public class ProductService extends BaseService<ProductDAO, ProductMapper, ProductDTO, Product, UUID> {
 
     public ProductService(ProductDAO dao, ProductMapper mapper) {
         super(dao, mapper);

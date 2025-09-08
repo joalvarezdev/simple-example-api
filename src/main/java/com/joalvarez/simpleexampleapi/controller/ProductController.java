@@ -16,8 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("products")
-public class ProductController
-        extends BasicController<ProductService, ProductDAO, ProductMapper, ProductDTO, Product, UUID> {
+public class ProductController extends BasicController<ProductService, ProductDAO, ProductMapper, ProductDTO, Product, UUID> {
 
     public ProductController(ProductService service) {
         super(service);
