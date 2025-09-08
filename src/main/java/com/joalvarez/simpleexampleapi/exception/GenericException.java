@@ -6,17 +6,15 @@ public class GenericException extends RuntimeException {
 
 	private final HttpStatus status;
 	private final int code;
+	private final String internalMessage;
+	private final String message;
 
-	public GenericException(Throwable cause, HttpStatus status, int code) {
-		super(cause);
-		this.status = status;
-		this.code = code;
-	}
-
-	public GenericException(HttpStatus status, int code, String message) {
+	public GenericException(HttpStatus status, int code, String message, String internalMessage) {
 		super(message);
 		this.status = status;
 		this.code = code;
+		this.message = message;
+		this.internalMessage = internalMessage;
 	}
 
 	public HttpStatus getStatus() {
@@ -25,5 +23,14 @@ public class GenericException extends RuntimeException {
 
 	public int getCode() {
 		return code;
+	}
+
+	public String getInternalMessage() {
+		return internalMessage;
+	}
+
+	@Override
+	public String getMessage() {
+		return message;
 	}
 }

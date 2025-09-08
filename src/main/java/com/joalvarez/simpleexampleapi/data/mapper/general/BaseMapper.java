@@ -56,6 +56,7 @@ public class BaseMapper<O extends Serializable, E>
 			throw new GenericException(
 				HttpStatus.BAD_REQUEST,
 				1000,
+				"Error to parse object to json",
 				obj.toString()
 			);
 		}

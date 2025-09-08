@@ -49,19 +49,18 @@ public class GlobalExceptionHandler implements LoggerHelper {
                 );
     }
 
-	@ExceptionHandler(ProductExistsException.class)
-	public ResponseEntity<ResponseErrorDTO> handler(ProductExistsException exception) {
-		
+	@ExceptionHandler(GenericException.class)
+	public ResponseEntity<ResponseErrorDTO> handler(GenericException exception) {
+
 		this.warn(exception.getInternalMessage());
 
-		return ResponseEntity.badRequest().body(
+		return ResponseEntity.status(exception.getStatus()).body(
 			new ResponseErrorDTO(
-				(long) exception.getInternalCode(),
+				(long) exception.getCode(),
 				exception.getInternalMessage(),
 				exception.getMessage(),
 				LocalDateTime.now()
 			)
 		);
 	}
-
 }
