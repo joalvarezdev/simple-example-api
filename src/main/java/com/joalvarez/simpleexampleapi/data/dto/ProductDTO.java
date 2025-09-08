@@ -16,6 +16,7 @@ public record ProductDTO(
   String category,
   int stock,
   boolean active,
+  Integer price,
   LocalDateTime createdAt,
   LocalDateTime updateAt
 ) implements BaseDTO {}

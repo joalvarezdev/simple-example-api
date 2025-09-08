@@ -2,8 +2,10 @@ package com.joalvarez.simpleexampleapi.service;
 
 import com.joalvarez.simpleexampleapi.data.dao.ProductDAO;
 import com.joalvarez.simpleexampleapi.data.domain.Product;
+import com.joalvarez.simpleexampleapi.data.dto.ProductCreateDTO;
 import com.joalvarez.simpleexampleapi.data.dto.ProductDTO;
 import com.joalvarez.simpleexampleapi.data.mapper.ProductMapper;
+import com.joalvarez.simpleexampleapi.exception.products.ProductExistsException;
 import com.joalvarez.simpleexampleapi.service.general.BaseService;
 
 import org.springframework.stereotype.Service;
@@ -21,4 +23,13 @@ public class ProductService extends BaseService<ProductDAO, ProductMapper, Produ
     protected Set<String> validFields() {
         return Set.of();
     }
+
+	public ProductDTO create(ProductCreateDTO dto) {
+
+		if (this.dao.existsProductBySKU(dto.sku())) {
+			throw new ProductExistsException(dto.sku());
+		}
+
+		return this.save(this.mapper.toProductDTO(dto));
+	}
 }

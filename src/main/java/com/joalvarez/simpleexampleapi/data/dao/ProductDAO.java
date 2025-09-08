@@ -21,4 +21,8 @@ public class ProductDAO extends BaseDAO<ProductRepository, Product, UUID> {
     protected Map<String, Function<String, Specification<Product>>> filterProcessors() {
       return Map.of();
     }
+
+	public boolean existsProductBySKU(String sku) {
+		return this.repository.existsBySku(sku);
+	}
 }

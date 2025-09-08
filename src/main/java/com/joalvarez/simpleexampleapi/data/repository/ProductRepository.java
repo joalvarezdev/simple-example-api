@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface ProductRepository extends GenericRepository<Product, UUID> {}
+public interface ProductRepository extends GenericRepository<Product, UUID> {
+
+	boolean existsBySku(String sku);
+
+}

@@ -4,6 +4,9 @@ import com.joalvarez.simpleexampleapi.data.dto.general.ResponseDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.joalvarez.simpleexampleapi.exception.dto.ResponseErrorDTO;
+import com.joalvarez.simpleexampleapi.exception.products.ProductExistsException;
+import com.joalvarez.simpleexampleapi.shared.LoggerHelper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -12,10 +15,11 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler implements LoggerHelper {
 
     private final ObjectMapper mapper;
 
@@ -44,5 +48,20 @@ public class GlobalExceptionHandler {
                         )
                 );
     }
+
+	@ExceptionHandler(ProductExistsException.class)
+	public ResponseEntity<ResponseErrorDTO> handler(ProductExistsException exception) {
+		
+		this.warn(exception.getInternalMessage());
+
+		return ResponseEntity.badRequest().body(
+			new ResponseErrorDTO(
+				(long) exception.getInternalCode(),
+				exception.getInternalMessage(),
+				exception.getMessage(),
+				LocalDateTime.now()
+			)
+		);
+	}
 
 }

@@ -20,8 +20,17 @@ public class Product {
 	private String category;
 	private int stock;
 	private boolean active;
+	private double price;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
 	public UUID getId() {
 		return id;
